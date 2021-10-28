@@ -73,7 +73,7 @@ jobs:
        app-settings-json: |
          [
              {
-                 "name": "Logging:LogLevel:Default",
+                 "name": "UI:Index:Header",
                  "value": "Development",
                  "slotSetting": true
              }
