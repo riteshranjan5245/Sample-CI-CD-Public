@@ -29,14 +29,14 @@ jobs:
         run: |
           dotnet restore
           dotnet build --configuration Release
-          dotnet publish -c Release -o '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp' 
+          dotnet publish "./Sample-CI-CD.csproj" -c Release -o website 
           
       # Upload a Build Artifact
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2.2.2
         with:
-          name: ${{ env.AZURE_WEBAPP_NAME }}
-          path: ${{ env.AZURE_WEBAPP_NAME }}/**
+          name: website
+          path: Sample-CI-CD-Public/website/**
           if-no-files-found: error
 
      
