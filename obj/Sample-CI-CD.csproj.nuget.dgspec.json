@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Ritesh\\Sample-CI-CD\\Sample-CI-CD.csproj": {}
+    "F:\\Ritesh\\Sample-CI-CD-Public\\Sample-CI-CD.csproj": {}
   },
   "projects": {
-    "F:\\Ritesh\\Sample-CI-CD\\Sample-CI-CD.csproj": {
+    "F:\\Ritesh\\Sample-CI-CD-Public\\Sample-CI-CD.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Ritesh\\Sample-CI-CD\\Sample-CI-CD.csproj",
+        "projectUniqueName": "F:\\Ritesh\\Sample-CI-CD-Public\\Sample-CI-CD.csproj",
         "projectName": "Sample-CI-CD",
-        "projectPath": "F:\\Ritesh\\Sample-CI-CD\\Sample-CI-CD.csproj",
+        "projectPath": "F:\\Ritesh\\Sample-CI-CD-Public\\Sample-CI-CD.csproj",
         "packagesPath": "C:\\Users\\EE\\.nuget\\packages\\",
-        "outputPath": "F:\\Ritesh\\Sample-CI-CD\\obj\\",
+        "outputPath": "F:\\Ritesh\\Sample-CI-CD-Public\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\EE\\AppData\\Roaming\\NuGet\\NuGet.Config",
