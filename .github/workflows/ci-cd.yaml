@@ -30,14 +30,14 @@ jobs:
         run: |
           dotnet restore
           dotnet build --configuration Release
-          dotnet publish "./Sample-CI-CD.csproj" -c Release -o ${{ WEBSITE }} 
+          dotnet publish "./Sample-CI-CD.csproj" -c Release -o ${{ env.WEBSITE }} 
           
       # Upload a Build Artifact
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2.2.2
         with:
-          name: ${{ WEBSITE }}
-          path: ./${{ WEBSITE }}/**
+          name: ${{ env.WEBSITE }}
+          path: ./${{ env.WEBSITE }}/**
           if-no-files-found: error
 
   deploy_staging:
@@ -52,8 +52,8 @@ jobs:
     - name: Download a Build Artifact
       uses: actions/download-artifact@v2.0.8
       with:
-        name: ${{ WEBSITE }}
-        path: ${{ WEBSITE }}
+        name: ${{ env.WEBSITE }}
+        path: ${{ env.WEBSITE }}
 
       # Deploy to Azure Web apps
     - name: 'Run Azure webapp deploy action using publish profile credentials'
