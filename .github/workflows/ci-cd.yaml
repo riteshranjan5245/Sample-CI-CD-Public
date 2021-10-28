@@ -2,11 +2,6 @@ name: Continuous Integration and Deployment (CI/CD)
 
 on:
   workflow_dispatch:
-    inputs:
-      reason:
-        description: 'The reason for running the workflow'
-        required: true
-        default: 'Manual build from GitHub UI'
   push:
     branches:
       - master
@@ -70,6 +65,20 @@ jobs:
         slot-name: staging
         package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/${{ env.WEBSITE }}'  
 
+    - name: Update config
+      uses: Azure/appservice-settings@v1
+      with:
+       app-name: ${{ env.AZURE_WEBAPP_NAME }}
+       slot-name: staging
+       app-settings-json: |
+         [
+             {
+                 "name": "Logging:LogLevel:Default",
+                 "value": "Development",
+                 "slotSetting": true
+             }
+         ]
+
   deploy_prod:
     needs: deploy_staging
     runs-on: ubuntu-latest
@@ -90,6 +99,19 @@ jobs:
         az webapp deployment slot swap -g ${{ env.AZURE_RESOURCE_GROUP_NAME }} -n ${{ env.AZURE_WEBAPP_NAME }} -s staging
         url=$(az webapp show -g ${{ env.AZURE_RESOURCE_GROUP_NAME }} -n ${{ env.AZURE_WEBAPP_NAME }} --query "defaultHostName" -o tsv)
         echo "::set-output name=url::http://$url"
+
+    - name: Update config
+      uses: Azure/appservice-settings@v1
+      with:
+       app-name: ${{ env.AZURE_WEBAPP_NAME }}
+       app-settings-json: |
+         [
+             {
+                 "name": "Logging:LogLevel:Default",
+                 "value": "Production",
+                 "slotSetting": true
+             }
+         ]
 
     - name: az cli logout
       run: az logout
