@@ -65,20 +65,6 @@ jobs:
         slot-name: staging
         package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/${{ env.WEBSITE }}'  
 
-    - name: Update config
-      uses: Azure/appservice-settings@v1
-      with:
-       app-name: ${{ env.AZURE_WEBAPP_NAME }}
-       slot-name: staging
-       app-settings-json: |
-         [
-             {
-                 "name": "UI:Index:Header",
-                 "value": "${{ secrets.INDEX_HEADER }}",
-                 "slotSetting": true
-             }
-         ]
-
   deploy_prod:
     needs: deploy_staging
     runs-on: ubuntu-latest
