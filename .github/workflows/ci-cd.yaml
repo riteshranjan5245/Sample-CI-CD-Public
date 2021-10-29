@@ -8,14 +8,14 @@ on:
 
 env:
   DOTNET_VERSION: '5.0.x'   # set this to the dot net version to use
-  AZURE_WEBAPP_NAME: eepocapi   # set this to your application's name
+  AZURE_WEBAPP_NAME: eepocwinapp   # set this to your application's name
   AZURE_WEBAPP_PACKAGE_PATH: '.'   # set this to the path to your web app project, defaults to the repository root
   AZURE_RESOURCE_GROUP_NAME: 'ExtraaEdge-Dev-Free-RG'   #set this to the name of the azure resource group
   WEBSITE: 'website'
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Check out code 
         uses: actions/checkout@master
