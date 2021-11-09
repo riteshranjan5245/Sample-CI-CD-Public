@@ -72,7 +72,7 @@ jobs:
     - name: Update config
       uses: Azure/appservice-settings@v1
       with:
-       app-name: ${{ env.app-name }}
+       app-name: ${{ env.AZURE_WEBAPP_NAME }}
        slot-name: qa
        app-settings-json: |
          [
@@ -110,7 +110,7 @@ jobs:
     - name: Update config
       uses: Azure/appservice-settings@v1
       with:
-       app-name: ${{ env.app-name }}
+       app-name: ${{ env.AZURE_WEBAPP_NAME }}
        app-settings-json: |
          [
              {
