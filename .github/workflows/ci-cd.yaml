@@ -43,7 +43,7 @@ jobs:
 
   deploy_staging:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     environment:
       name: PRE-PROD
@@ -57,17 +57,38 @@ jobs:
         path: ${{ env.WEBSITE }}
 
       # Deploy to Azure Web apps
+    - name: Login via Azure CLI
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
     - name: 'Run Azure webapp deploy action using publish profile credentials'
       uses: azure/webapps-deploy@v2
       with: 
         app-name: ${{ env.AZURE_WEBAPP_NAME }} # Replace with your app name
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_PRE_PROD  }} # Define secret variable in repository settings as per action documentation
         slot-name: qa
         package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/${{ env.WEBSITE }}'  
 
+    - name: Update config
+      uses: Azure/appservice-settings@v1
+      with:
+       app-name: ${{ env.app-name }}
+       slot-name: qa
+       app-settings-json: |
+         [
+             {
+                 "name": "UI:Index:Header",
+                 "value": "${{ secrets.INDEX_HEADER }}",
+                 "slotSetting": true
+             }
+         ]
+
+    - name: az cli logout
+      run: az logout
+
   deploy_prod:
     needs: deploy_staging
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     environment:
       name: PROD
@@ -85,6 +106,19 @@ jobs:
         az webapp deployment slot swap -g ${{ env.AZURE_RESOURCE_GROUP_NAME }} -n ${{ env.AZURE_WEBAPP_NAME }} -s qa
         url=$(az webapp show -g ${{ env.AZURE_RESOURCE_GROUP_NAME }} -n ${{ env.AZURE_WEBAPP_NAME }} --query "defaultHostName" -o tsv)
         echo "::set-output name=url::http://$url"
+
+    - name: Update config
+      uses: Azure/appservice-settings@v1
+      with:
+       app-name: ${{ env.app-name }}
+       app-settings-json: |
+         [
+             {
+                 "name": "UI:Index:Header",
+                 "value": "prod",
+                 "slotSetting": true
+             }
+         ]
 
     - name: az cli logout
       run: az logout
