@@ -104,8 +104,6 @@ jobs:
       id: slot_swap
       run: |
         az webapp deployment slot swap -g ${{ env.AZURE_RESOURCE_GROUP_NAME }} -n ${{ env.AZURE_WEBAPP_NAME }} -s qa
-        url=$(az webapp show -g ${{ env.AZURE_RESOURCE_GROUP_NAME }} -n ${{ env.AZURE_WEBAPP_NAME }} --query "defaultHostName" -o tsv)
-        echo "::set-output name=url::http://$url"
 
     - name: Update config
       uses: Azure/appservice-settings@v1
