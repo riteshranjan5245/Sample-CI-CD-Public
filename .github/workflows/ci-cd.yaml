@@ -74,14 +74,7 @@ jobs:
       with:
        app-name: ${{ env.AZURE_WEBAPP_NAME }}
        slot-name: qa
-       app-settings-json: |
-         [
-             {
-                 "name": "UI:Index:Header",
-                 "value": "${{ secrets.INDEX_HEADER }}",
-                 "slotSetting": true
-             }
-         ]
+       app-settings-json: '${{ secrets.APP_SETTINGS_STAGING }}'
 
     - name: az cli logout
       run: az logout
@@ -109,14 +102,7 @@ jobs:
       uses: Azure/appservice-settings@v1
       with:
        app-name: ${{ env.AZURE_WEBAPP_NAME }}
-       app-settings-json: |
-         [
-             {
-                 "name": "UI:Index:Header",
-                 "value": "prod",
-                 "slotSetting": true
-             }
-         ]
+       app-settings-json: '${{ secrets.APP_SETTINGS }}'
 
     - name: az cli logout
       run: az logout
