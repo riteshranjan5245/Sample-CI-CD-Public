@@ -28,7 +28,12 @@ namespace Sample_CI_CD.Controllers
         [HttpGet]
         public string Get()
         {
-            var str = Environment.GetEnvironmentVariable("UI:Index:Header");
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            var str = configuration.GetValue<string>("UI:Index:Header") + configuration.GetValue<string>("RandomValue");
             
             return str;
         }
