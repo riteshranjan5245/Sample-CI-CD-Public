@@ -69,7 +69,7 @@ jobs:
         files: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/${{ env.WEBSITE }}/appsettings.json'
       env:
         RandomValue: ${{ secrets.RANDOM }}
-        UI.Index.Header: ${{ secrets.HEADER }}
+        UI: ${{ secrets.HEADER }}
 
     - name: 'Run Azure webapp deploy action using publish profile credentials'
       uses: azure/webapps-deploy@v2
