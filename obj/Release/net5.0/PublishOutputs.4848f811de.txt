@@ -1,0 +1,11 @@
+F:\Ritesh\Sample-CI-CD-Public\obj\Release\net5.0\PubTmp\Out\Sample-CI-CD.exe
+F:\Ritesh\Sample-CI-CD-Public\obj\Release\net5.0\PubTmp\Out\appsettings.Development.json
+F:\Ritesh\Sample-CI-CD-Public\obj\Release\net5.0\PubTmp\Out\appsettings.json
+F:\Ritesh\Sample-CI-CD-Public\obj\Release\net5.0\PubTmp\Out\Sample-CI-CD.dll
+F:\Ritesh\Sample-CI-CD-Public\obj\Release\net5.0\PubTmp\Out\Sample-CI-CD.deps.json
+F:\Ritesh\Sample-CI-CD-Public\obj\Release\net5.0\PubTmp\Out\Sample-CI-CD.runtimeconfig.json
+F:\Ritesh\Sample-CI-CD-Public\obj\Release\net5.0\PubTmp\Out\Sample-CI-CD.pdb
+F:\Ritesh\Sample-CI-CD-Public\obj\Release\net5.0\PubTmp\Out\Microsoft.OpenApi.dll
+F:\Ritesh\Sample-CI-CD-Public\obj\Release\net5.0\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll
+F:\Ritesh\Sample-CI-CD-Public\obj\Release\net5.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
+F:\Ritesh\Sample-CI-CD-Public\obj\Release\net5.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll
