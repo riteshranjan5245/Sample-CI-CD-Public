@@ -61,6 +61,13 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
+    - name: 'Run Azure webapp deploy action using publish profile credentials'
+      uses: azure/webapps-deploy@v2
+      with: 
+        app-name: ${{ env.AZURE_WEBAPP_NAME }} # Replace with your app name
+        slot-name: qa
+        package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/${{ env.WEBSITE }}'  
 
     - name: Update config
       uses: Azure/appservice-settings@v1
@@ -69,13 +76,6 @@ jobs:
        mask-inputs: false
        slot-name: qa
        app-settings-json: '${{ secrets.APP_SETTINGS_STAGING }}'
-    
-    - name: 'Run Azure webapp deploy action using publish profile credentials'
-      uses: azure/webapps-deploy@v2
-      with: 
-        app-name: ${{ env.AZURE_WEBAPP_NAME }} # Replace with your app name
-        slot-name: qa
-        package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/${{ env.WEBSITE }}'  
 
     - name: az cli logout
       run: az logout
@@ -94,17 +94,17 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+    - name: Swap staging slot into production
+      id: slot_swap
+      run: |
+        az webapp deployment slot swap -g ${{ env.AZURE_RESOURCE_GROUP_NAME }} -n ${{ env.AZURE_WEBAPP_NAME }} -s qa
+
     - name: Update config
       uses: Azure/appservice-settings@v1
       with:
        app-name: ${{ env.AZURE_WEBAPP_NAME }}
        mask-inputs: false
        app-settings-json: '${{ secrets.APP_SETTINGS }}'
-
-    - name: Swap staging slot into production
-      id: slot_swap
-      run: |
-        az webapp deployment slot swap -g ${{ env.AZURE_RESOURCE_GROUP_NAME }} -n ${{ env.AZURE_WEBAPP_NAME }} -s qa
 
     - name: az cli logout
       run: az logout
