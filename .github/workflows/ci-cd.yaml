@@ -8,10 +8,13 @@ on:
 
 env:
   DOTNET_VERSION: '5.0.x'   # set this to the dot net version to use
-  AZURE_WEBAPP_NAME: eepocwinapp   # set this to your application's name
+  AZURE_WEBAPP_NAME: 'eetestvnet'   # set this to your application's name
   AZURE_WEBAPP_PACKAGE_PATH: '.'   # set this to the path to your web app project, defaults to the repository root
-  AZURE_RESOURCE_GROUP_NAME: 'ExtraaEdge-Dev-Free-RG'   #set this to the name of the azure resource group
+  AZURE_RESOURCE_GROUP_NAME: 'southindiagroup1_linux'   #set this to the name of the azure resource group
   WEBSITE: 'website'
+  SLOT: 'eetestvnet'
+  CSPROJ_PATH: './Api/ExtraaEdge.Api/ExtraaEdge.Api.csproj'
+
 
 jobs:
   build:
