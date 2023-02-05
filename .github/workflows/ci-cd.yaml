@@ -13,7 +13,7 @@ env:
   AZURE_RESOURCE_GROUP_NAME: 'southindiagroup1_linux'   #set this to the name of the azure resource group
   WEBSITE: 'website'
   SLOT: 'eetestvnet'
-  CSPROJ_PATH: './Api/ExtraaEdge.Api/ExtraaEdge.Api.csproj'
+  CSPROJ_PATH: './Sample-CI-CD.csproj'
 
 
 jobs:
